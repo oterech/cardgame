@@ -9,6 +9,9 @@ const Card = db.define('card', {
     value: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    order: {
+      type: Sequelize.INTEGER
     }
   })
 

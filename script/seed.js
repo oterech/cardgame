@@ -53,27 +53,34 @@ async function seed() {
 
   const hearts = await Promise.all(
     ranks.map((ranks, index) => {
-     return Card.create({ rank: ranks, value: values[index], suitId: 1});
+     return Card.create({ rank: ranks, value: values[index], order: index, suitId: 1});
     })
   );
 
   const spades = await Promise.all(
     ranks.map((ranks, index) => {
-     return Card.create({ rank: ranks, value: values[index], suitId: 2});
+     return Card.create({ rank: ranks, value: values[index], order: index, suitId: 2});
     })
   );
 
   const diamonds = await Promise.all(
     ranks.map((ranks, index) => {
-     return Card.create({ rank: ranks, value: values[index], suitId: 3});
+     return Card.create({ rank: ranks, value: values[index], order: index, suitId: 3});
     })
   );
 
   const clubs = await Promise.all(
     ranks.map((ranks, index) => {
-     return Card.create({ rank: ranks, value: values[index], suitId: 4});
+     return Card.create({ rank: ranks, value: values[index], order: index, suitId: 4});
     })
   );
+
+  const jokers = await Promise.all (
+ [   Card.create({rank: 'joker', value: 100} 
+    ),
+    Card.create({rank: 'joker', value: 100} 
+    )]
+  )
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
@@ -87,7 +94,8 @@ async function seed() {
     hearts,
     spades,
     clubs,
-    diamonds
+    diamonds,
+    jokers
   };
 }
 
