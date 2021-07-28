@@ -75,12 +75,12 @@ async function seed() {
     })
   );
 
-  const jokers = await Promise.all (
- [   Card.create({rank: 'joker', value: 100} 
-    ),
-    Card.create({rank: 'joker', value: 100} 
-    )]
-  )
+//   const jokers = await Promise.all (
+//  [   Card.create({rank: 'joker', value: 100} 
+//     ),
+//     Card.create({rank: 'joker', value: 100} 
+//     )]
+//   )
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
@@ -94,8 +94,7 @@ async function seed() {
     hearts,
     spades,
     clubs,
-    diamonds,
-    jokers
+    diamonds
   };
 }
 
