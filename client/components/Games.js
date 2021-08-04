@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { allCards, fetchCards } from "../store/cards";
 import { Button } from "reactstrap";
+import Players from "./Players";
 /**
  * COMPONENT
  */
@@ -22,6 +23,7 @@ class Games extends React.Component {
   async componentDidMount() {
     await this.props.getCards();
     const cards = this.props.cards;
+    console.log(cards)
     for (let i = cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
       const temp = cards[i];
@@ -67,7 +69,7 @@ class Games extends React.Component {
         winnerText.innerText = "Who Won This Round?";
         let cardHist = document.getElementById("cardHistory");
         cardHist.innerText += "  " + winningCard.rank + winningCard.suit.name;
-      }, 1000);
+      }, 1500);
     } else if(cFirstCard.value > pFirstCard.value){
       //the computer wins
       const currentHand = this.state.computer.hand;
@@ -92,7 +94,7 @@ class Games extends React.Component {
         newLoserTop = document.getElementById(newLoserTop.id)
         newLoserTop.style.transform = ""
         winnerText.innerText = "Who Won This Round?";
-      }, 1000);
+      }, 2000);
     } else if(cFirstCard.value == pFirstCard.value) {
       const computerHand = this.state.computer.hand;
       const playerHand = this.state.player.hand
@@ -117,7 +119,7 @@ class Games extends React.Component {
           newLoserTop = document.getElementById(newLoserTop.id)
           newLoserTop.style.transform = ""
           winnerText.innerText = "Who Won This Round?";
-        }, 1000);
+        }, 2500);
     }
   }
 
@@ -126,23 +128,23 @@ class Games extends React.Component {
     const computersHand = this.state.computer.hand;
     return (
       <div className="container-fluid">
-        <p id="winningText" className="text-center mt-5 display-4"> </p>
+        <p id="winningText" className="text-center mt-5 display-4">War</p>
         <Button className="d-block mx-auto mb-5" onClick={this.beginGame}>War</Button>
         <div className="d-flex justify-content-around">
         </div>
-       <div className="row row-cols-2 justify-content-around">
+       <div className="row row-cols-2 mb-5 justify-content-around">
         <div id="playerDeck" className="d-flex flex-column">
         <p className ="text-center">Player Cards: {this.state.player.hand.length}</p>
           {playersHand.map((card, index) => {
+            console.log(card)
             return (
               <div className="mt-5 pCard" key={index}>
                 <div className="pCardInner" id={card.id}>
                 <div className="pCardBack">
-                  <p>CARDBACK</p>
+                <img className="h-100 w-100" src="https://i.postimg.cc/SRzgHfyt/14.png"></img>
                 </div>
                   <div className="pCardFront">
-                  <p>{card.rank}</p>
-                  <p>{card.suit && card.suit.name}</p>
+                  <img className="h-100 w-100" src={card.imageUrl}></img>
                   </div>
               </div>
               </div>
@@ -156,11 +158,10 @@ class Games extends React.Component {
               <div className="mt-5 cCard" key={index}>
                 <div className="cCardInner" id={card.id}>
                 <div className="cCardBack">
-                  <p>CARDBACK</p>
+                <img className="h-100 w-100" src="https://i.postimg.cc/SRzgHfyt/14.png"></img>
                 </div>
                   <div className="cCardFront">
-                  <p>{card.rank}</p>
-                  <p>{card.suit && card.suit.name}</p>
+                  <img className="h-100 w-100" src={card.imageUrl}></img>
                   </div>
               </div>
               </div>
@@ -168,6 +169,7 @@ class Games extends React.Component {
           })}
         </div>
         </div>
+        <Players />
       </div>
     );
   }

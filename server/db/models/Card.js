@@ -12,6 +12,9 @@ const Card = db.define('card', {
     },
     order: {
       type: Sequelize.INTEGER
+    },
+    imageUrl: {
+      type: Sequelize.STRING,
     }
   })
 

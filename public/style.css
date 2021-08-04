@@ -1,5 +1,11 @@
+* {
+  background-color: #021627;
+  color: salmon
+}
+
 body {
   font-family: sans-serif;
+
 }
 
 a {
